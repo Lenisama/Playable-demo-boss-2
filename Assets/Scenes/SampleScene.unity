@@ -259,7 +259,6 @@ GameObject:
   m_Component:
   - component: {fileID: 675712312}
   - component: {fileID: 675712311}
-  - component: {fileID: 675712313}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -322,27 +321,6 @@ Transform:
   - {fileID: 2105280933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &675712313
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675712310}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 885d652000a683b49a195754887bc326, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1278492249
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +334,7 @@ GameObject:
   - component: {fileID: 1278492252}
   - component: {fileID: 1278492251}
   - component: {fileID: 1278492250}
+  - component: {fileID: 1278492255}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -470,6 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
+  _isMoving: 1
 --- !u!50 &1278492252
 Rigidbody2D:
   serializedVersion: 4
@@ -564,6 +544,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1278492255
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278492249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f610fc3badb042841a8c403babe79486, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2105280932
 GameObject:
   m_ObjectHideFlags: 3
@@ -657,5 +658,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1278492254}
   - {fileID: 675712312}
+  - {fileID: 1278492254}

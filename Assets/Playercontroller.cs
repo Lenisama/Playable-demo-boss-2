@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,6 +9,19 @@ public class Playercontroller : MonoBehaviour
 {
     Vector2 moveInput;
     public float walkSpeed = 5f;
+    public bool _isFacingRight = true;
+    private bool isFacingRight;
+
+    public bool GetIsFacingRight()
+    { return _isFacingRight; }
+    private void SetIsFacingRight(bool value)
+    {
+        if (_isFacingRight != value)
+        {
+            transform.localScale *= new Vector2(-1, 1);
+        }
+        _isFacingRight = value;
+    }
     Rigidbody2D rb;
     Animator animator;
     [SerializeField]
@@ -15,11 +29,16 @@ public class Playercontroller : MonoBehaviour
     public bool IsMoving { get
     {
         return _isMoving;
-    } private set
+    } 
+    
+    private set
     {
         _isMoving = value;
         animator.SetBool("isMoving", value);
     }}
+
+    public bool IsFacingRight { get; private set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,5 +64,17 @@ public class Playercontroller : MonoBehaviour
     {
         //moveInput = context.ReadValue<Vector2>();
         IsMoving = moveInput != Vector2.zero;
+        SetFacingDirection(moveInput);
+    }
+    private void SetFacingDirection(Vector2 moveInput)
+    {
+        if(moveInput.x > 0 && !GetIsFacingRight())
+        {
+            SetIsFacingRight(true);
+        }
+        else if (moveInput.x > 0 && GetIsFacingRight())
+        {
+            SetIsFacingRight(false);
+        }
     }
 }
