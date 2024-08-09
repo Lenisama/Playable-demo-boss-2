@@ -16,9 +16,13 @@ public class Playercontroller : MonoBehaviour
     { return _isFacingRight; }
     private void SetIsFacingRight(bool value)
     {
-        if (_isFacingRight != value)
+        if (value)
         {
-            transform.localScale *= new Vector2(-1, 1);
+            transform.localScale = new Vector2(1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector2(-1, 1);
         }
         _isFacingRight = value;
     }
@@ -26,16 +30,19 @@ public class Playercontroller : MonoBehaviour
     Animator animator;
     [SerializeField]
     private bool _isMoving = false;
-    public bool IsMoving { get
+    public bool IsMoving
     {
-        return _isMoving;
-    } 
-    
-    private set
-    {
-        _isMoving = value;
-        animator.SetBool("isMoving", value);
-    }}
+        get
+        {
+            return _isMoving;
+        }
+
+        private set
+        {
+            _isMoving = value;
+            animator.SetBool("isMoving", value);
+        }
+    }
 
     public bool IsFacingRight { get; private set; }
 
@@ -55,24 +62,27 @@ public class Playercontroller : MonoBehaviour
     {
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+        if(moveInput.x != 0)
+        {
+            IsMoving = true;
+        }
+        else
+        {
+            IsMoving = false;
+        }
+        SetFacingDirection();
     }
     private void FixUpdate()
     {
 
     }
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        //moveInput = context.ReadValue<Vector2>();
-        IsMoving = moveInput != Vector2.zero;
-        SetFacingDirection(moveInput);
-    }
-    private void SetFacingDirection(Vector2 moveInput)
+    private void SetFacingDirection()
     {
         if(moveInput.x > 0 && !GetIsFacingRight())
         {
             SetIsFacingRight(true);
         }
-        else if (moveInput.x > 0 && GetIsFacingRight())
+        else if (moveInput.x < 0 && GetIsFacingRight())
         {
             SetIsFacingRight(false);
         }
