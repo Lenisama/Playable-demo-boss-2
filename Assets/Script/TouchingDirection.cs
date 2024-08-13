@@ -13,12 +13,18 @@ public class TouchingDirection : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
-    public bool IsGrounded { get {
-        return _isGrounded;
-        } private set{
+    public bool IsGrounded
+    {
+        get
+        {
+            return _isGrounded;
+        }
+        private set
+        {
             _isGrounded = value;
             animator.SetBool("isGrounded", value);
-        } }
+        }
+    }
 
     // Start is called before the first frame update
     private void Awake ()

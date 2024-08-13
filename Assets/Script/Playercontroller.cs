@@ -5,12 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirection))]
 public class Playercontroller : MonoBehaviour
 {
     Vector2 moveInput;
-    TouchingDirections touchingDirections;
+    TouchingDirection touchingDirection;
     public float walkSpeed = 5f;
+    public float airWalkSpeed = 10f;
     public bool _isFacingRight = true;
     private bool isFacingRight; 
     public float jumpImpulse = 10f;
@@ -55,7 +56,7 @@ public class Playercontroller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        touchingDirections = GetComponent<TouchingDirections>();
+        touchingDirection = GetComponent<TouchingDirection>();
 
     }
     // Start is called before the first frame update
@@ -68,7 +69,14 @@ public class Playercontroller : MonoBehaviour
     void Update()
     {
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+        if(touchingDirection.IsGrounded)
+        {
+            rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(moveInput.x * airWalkSpeed, rb.velocity.y);
+        }
         animator.SetFloat("yVelocity", rb.velocity.y);
         if(moveInput.x != 0)
         {
@@ -79,9 +87,12 @@ public class Playercontroller : MonoBehaviour
             IsMoving = false;
         }
         SetFacingDirection();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Jump") && touchingDirection.IsGrounded)
         {
-            rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+            // rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+
+            animator.SetTrigger("jump");
+            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         }
     }
     private void FixUpdate()
@@ -99,13 +110,13 @@ public class Playercontroller : MonoBehaviour
             SetIsFacingRight(false);
         }
     }
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        //Check if alive
-        if(context.started && touchingDirections.IsGrounded)
-        {
-            animator.SetTrigger("jump");
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-        }
-    }
+    // public void OnJump(InputAction.CallbackContext context)
+    // {
+    //     //Check if alive
+    //     if(context.started && touchingDirection.IsGrounded)
+    //     {
+    //         animator.SetTrigger("jump");
+    //         rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+    //     }
+    // }
 }

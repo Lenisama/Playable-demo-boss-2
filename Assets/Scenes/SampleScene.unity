@@ -464,10 +464,10 @@ GameObject:
   - component: {fileID: 1278492252}
   - component: {fileID: 1278492251}
   - component: {fileID: 1278492255}
-  - component: {fileID: 1278492256}
   - component: {fileID: 1278492257}
   - component: {fileID: 1278492258}
   - component: {fileID: 1278492259}
+  - component: {fileID: 1278492260}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ffb1ffabc1ef5418cc12043f7c2361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
+  walkSpeed: 15
   _isFacingRight: 1
   jumpImpulse: 10
   _isMoving: 1
@@ -606,34 +606,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1278492256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278492249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c7a269701136404c90914473ff9518c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  groundDistance: 0.05
-  _isGrounded: 0
 --- !u!70 &1278492257
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -709,6 +681,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d11f73fafe9ff84cac66c6ac252fd8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundDistance: 0.05
+  _isGrounded: 0
+  touchingCol: {fileID: 0}
+  rb: {fileID: 0}
+  animator: {fileID: 0}
+--- !u!114 &1278492260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278492249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7a269701136404c90914473ff9518c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   castFilter:
