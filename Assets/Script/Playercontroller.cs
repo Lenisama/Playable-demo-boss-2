@@ -30,6 +30,10 @@ public class Playercontroller : MonoBehaviour
         }
         _isFacingRight = value;
     }
+    public bool CanMove { get
+    {
+        return animator.GetBool("canMove");
+    }}
     Rigidbody2D rb;
     Animator animator;
     [SerializeField]
@@ -69,7 +73,8 @@ public class Playercontroller : MonoBehaviour
     void Update()
     {
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if(touchingDirection.IsGrounded)
+        if(CanMove)
+           { if(touchingDirection.IsGrounded)
         {
             rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
         }
@@ -85,14 +90,18 @@ public class Playercontroller : MonoBehaviour
         else
         {
             IsMoving = false;
-        }
+        }}
         SetFacingDirection();
-        if (Input.GetButtonDown("Jump") && touchingDirection.IsGrounded)
+        if (Input.GetButtonDown("Jump") && touchingDirection.IsGrounded && CanMove)
         {
             // rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
 
             animator.SetTrigger("jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+        }
+        if (Input.GetButtonDown("Attack_1") && touchingDirection.IsGrounded)
+        {
+            animator.SetTrigger("attack");
         }
     }
     private void FixUpdate()

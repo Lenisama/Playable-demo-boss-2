@@ -488,6 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 15
+  airWalkSpeed: 10
   _isFacingRight: 1
   jumpImpulse: 10
   _isMoving: 1
@@ -680,27 +681,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1278492249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d11f73fafe9ff84cac66c6ac252fd8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 99ffb1ffabc1ef5418cc12043f7c2361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  groundDistance: 0.05
-  _isGrounded: 0
-  touchingCol: {fileID: 0}
-  rb: {fileID: 0}
-  animator: {fileID: 0}
+  walkSpeed: 5
+  airWalkSpeed: 10
+  _isFacingRight: 1
+  jumpImpulse: 10
+  _isMoving: 0
 --- !u!114 &1278492260
 MonoBehaviour:
   m_ObjectHideFlags: 0
