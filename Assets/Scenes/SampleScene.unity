@@ -466,7 +466,6 @@ GameObject:
   - component: {fileID: 1278492255}
   - component: {fileID: 1278492257}
   - component: {fileID: 1278492258}
-  - component: {fileID: 1278492259}
   - component: {fileID: 1278492260}
   m_Layer: 0
   m_Name: Player
@@ -672,23 +671,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1278492259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278492249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99ffb1ffabc1ef5418cc12043f7c2361, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 5
-  airWalkSpeed: 10
-  _isFacingRight: 1
-  jumpImpulse: 10
-  _isMoving: 0
 --- !u!114 &1278492260
 MonoBehaviour:
   m_ObjectHideFlags: 0
