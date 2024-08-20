@@ -65,6 +65,7 @@ public class Damageable : MonoBehaviour
         {
             Health -= damage;
             isInvincible = true;
+            Debug.Log("Take damage " + damage);
         }
     }
 
@@ -79,15 +80,11 @@ public class Damageable : MonoBehaviour
             }
             timeSinceHit += Time.deltaTime;
         }
-        Hit(10);
+    
     }
-        void Start()
+    
+    void Start()
     {
         
-    }
-
-    internal void Hit(object attackDamage)
-    {
-        throw new NotImplementedException();
     }
 }
