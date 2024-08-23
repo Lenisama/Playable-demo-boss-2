@@ -9,7 +9,7 @@ public class Attack : MonoBehaviour
     public Damageable damageable;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 6 && damageable != null)
+        if(collision.gameObject.layer == 6)
         {
            damageable.Hit(attackDamage);
            Debug.Log(collision.name + " hit for " + attackDamage);  

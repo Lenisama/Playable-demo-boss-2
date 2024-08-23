@@ -10,11 +10,9 @@ public class Spike : MonoBehaviour
     public void RiseUp()
     {
             transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime);
-            Debug.Log("up");
     }
     public void FallDown()
     {
             transform.position = new Vector3(transform.position.x, transform.position.y - speed * Time.deltaTime);
-            Debug.Log("down");
     }
 }
