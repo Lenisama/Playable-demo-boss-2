@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public Collider2D attackCollider;
     public int attackDamage = 10;
-    public Damageable damageable;
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if(collision.gameObject.layer == 6)
+        if(collider2D.gameObject.layer == 6)
         {
-           damageable.Hit(attackDamage);
-           Debug.Log(collision.name + " hit for " + attackDamage);  
-        }
+           Damageable dam = collider2D.gameObject.GetComponent<Damageable>();
+           dam.Hit(attackDamage);
+           Debug.Log(collider2D.name + " hit for " + attackDamage);  
+        } 
     }
 }
