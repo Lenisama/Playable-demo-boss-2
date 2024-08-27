@@ -7,23 +7,33 @@ public class Spike : MonoBehaviour
 {
     public float savedTime;
     public float speed = 50;
+    public float distance = 2;
     // Start is called before the first frame update
     public void RiseUp()
     {
-            transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime);
+        StartCoroutine(Rise());
     }
-    public void FallDown()
+    public IEnumerator Rise()
     {
-            transform.position = new Vector3(transform.position.x, transform.position.y - speed * Time.deltaTime);
-    }
-    public IEnumerable Rise()
-    {
-         int i = 0;
-        while(i < 24)
+        Vector3 start = transform.position;
+        Vector3 end = start + new Vector3(0, distance, 0);
+        while (Vector3.Distance(transform.position, end) > 0.05f)
         {
-        RiseUp();
-        yield return new WaitForSeconds(1);
+            transform.position = Vector3.Lerp(transform.position, end, speed * Time.deltaTime);
+            yield return null;
         }
-        FallDown();
-    }  
+
+        StartCoroutine(FallDown());
+    }
+
+    public IEnumerator FallDown()
+    {
+        Vector3 start = transform.position;
+        Vector3 end = start - new Vector3(0, distance, 0);
+        while (Vector3.Distance(transform.position, end) > 0.05f)
+        {
+            transform.position = Vector3.Lerp(transform.position, end, speed * Time.deltaTime);
+            yield return null;
+        }
+    }
 }
