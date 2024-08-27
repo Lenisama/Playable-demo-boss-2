@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8017728151442784855}
   - component: {fileID: 6761095803880324010}
   - component: {fileID: 316964583871647974}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Skill 1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,9 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe1830ae92710a48a5d9417dcb97015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 0}
   attackDamage: 10
-  damageable: {fileID: 0}
 --- !u!1 &4811854862516957768
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1529347917915701153}
-  - component: {fileID: 3653765411946778809}
+  - component: {fileID: 5957553918753602905}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -204,7 +202,7 @@ Transform:
   - {fileID: 3937266258475433133}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3653765411946778809
+--- !u!114 &5957553918753602905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,7 +211,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4811854862516957768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef82e71413ed2fd4da739a172370bb40, type: 3}
+  m_Script: {fileID: 11500000, guid: 93ad39ddbbe0e2b44919cfbed5a34e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  savedTime: 0
+  speed: 50
