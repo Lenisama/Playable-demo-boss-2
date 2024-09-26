@@ -103,6 +103,15 @@ public class Playercontroller : MonoBehaviour
 			rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
 		}
 
+		if (rb.velocity.y < 0)
+		{
+			rb.velocity += Vector2.up * (Physics2D.gravity.y * (2.5f - 1) * Time.deltaTime);
+		}
+		else if (!Input.GetButton("Jump"))
+		{
+			rb.velocity += Vector2.up * (Physics2D.gravity.y * (1.5f - 1) * Time.deltaTime);
+		}
+
 		if (Input.GetButtonDown("Attack_1"))
 		{
 			animator.SetTrigger("attack");
