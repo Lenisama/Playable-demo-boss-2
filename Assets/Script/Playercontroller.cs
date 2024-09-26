@@ -8,124 +8,127 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirection))]
 public class Playercontroller : MonoBehaviour
 {
-    Vector2 moveInput;
-    TouchingDirection touchingDirection;
-    public float walkSpeed = 5f;
-    public float airWalkSpeed = 10f;
-    public bool _isFacingRight = true;
-    private bool isFacingRight; 
-    public float jumpImpulse = 10f;
+	Vector2 moveInput;
+	TouchingDirection touchingDirection;
+	public float walkSpeed = 5f;
+	public float airWalkSpeed = 10f;
+	public bool _isFacingRight = true;
+	private bool isFacingRight;
+	public float jumpImpulse = 10f;
 
-    public bool GetIsFacingRight()
-    { return _isFacingRight; }
-    private void SetIsFacingRight(bool value)
-    {
-        if (value)
-        {
-            transform.localScale = new Vector2(1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector2(-1, 1);
-        }
-        _isFacingRight = value;
-    }
-    public bool CanMove { get
-    {
-        return animator.GetBool("canMove");
-    }}
-    Rigidbody2D rb;
-    Animator animator;
-    [SerializeField]
-    private bool _isMoving = false;
-   
+	public bool GetIsFacingRight()
+	{
+		return _isFacingRight;
+	}
 
-    public bool IsMoving
-    {
-        get
-        {
-            return _isMoving;
-        }
+	private void SetIsFacingRight(bool value)
+	{
+		if (value)
+		{
+			transform.localScale = new Vector2(1, 1);
+		}
+		else
+		{
+			transform.localScale = new Vector2(-1, 1);
+		}
 
-        private set
-        {
-            _isMoving = value;
-            animator.SetBool("isMoving", value);
-        }
-    }
+		_isFacingRight = value;
+	}
 
-    public bool IsFacingRight { get; private set; }
+	public bool CanMove
+	{
+		get { return animator.GetBool("canMove"); }
+	}
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        touchingDirection = GetComponent<TouchingDirection>();
+	Rigidbody2D rb;
+	Animator animator;
+	[SerializeField] private bool _isMoving = false;
 
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if(CanMove)
-           { if(touchingDirection.IsGrounded)
-        {
-            rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(moveInput.x * airWalkSpeed, rb.velocity.y);
-        }
-        animator.SetFloat("yVelocity", rb.velocity.y);
-        if(moveInput.x != 0)
-        {
-            IsMoving = true;
-        }
-        else
-        {
-            IsMoving = false;
-        }}
-        SetFacingDirection();
-        if (Input.GetButtonDown("Jump") && touchingDirection.IsGrounded && CanMove)
-        {
-            // rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+	public bool IsMoving
+	{
+		get { return _isMoving; }
 
-            animator.SetTrigger("jump");
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-        }
-        if (Input.GetButtonDown("Attack_1") && touchingDirection.IsGrounded)
-        {
-            animator.SetTrigger("attack");
-        }
-    }
-    private void FixUpdate()
-    {
+		private set
+		{
+			_isMoving = value;
+			animator.SetBool("isMoving", value);
+		}
+	}
 
-    }
-    private void SetFacingDirection()
-    {
-        if(moveInput.x > 0 && !GetIsFacingRight())
-        {
-            SetIsFacingRight(true);
-        }
-        else if (moveInput.x < 0 && GetIsFacingRight())
-        {
-            SetIsFacingRight(false);
-        }
-    }
-    // public void OnJump(InputAction.CallbackContext context)
-    // {
-    //     //Check if alive
-    //     if(context.started && touchingDirection.IsGrounded)
-    //     {
-    //         animator.SetTrigger("jump");
-    //         rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-    //     }
-    // }
+	public bool IsFacingRight { get; private set; }
+
+	private void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
+		touchingDirection = GetComponent<TouchingDirection>();
+	}
+
+	// Start is called before the first frame update
+	void Start() { }
+
+	// Update is called once per frame
+	void Update()
+	{
+		moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		if (CanMove)
+		{
+			if (touchingDirection.IsGrounded)
+			{
+				rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+			}
+			else
+			{
+				rb.velocity = new Vector2(moveInput.x * airWalkSpeed, rb.velocity.y);
+			}
+
+			animator.SetFloat("yVelocity", rb.velocity.y);
+			if (moveInput.x != 0)
+			{
+				IsMoving = true;
+			}
+			else
+			{
+				IsMoving = false;
+			}
+		}
+
+		SetFacingDirection();
+		if (Input.GetButtonDown("Jump") && touchingDirection.IsGrounded && CanMove)
+		{
+			// rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+
+			animator.SetTrigger("jump");
+			rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+		}
+
+		if (Input.GetButtonDown("Attack_1"))
+		{
+			animator.SetTrigger("attack");
+		}
+	}
+
+	private void FixUpdate() { }
+
+	private void SetFacingDirection()
+	{
+		if (moveInput.x > 0 && !GetIsFacingRight())
+		{
+			SetIsFacingRight(true);
+		}
+		else if (moveInput.x < 0 && GetIsFacingRight())
+		{
+			SetIsFacingRight(false);
+		}
+	}
+	// public void OnJump(InputAction.CallbackContext context)
+	// {
+	//     //Check if alive
+	//     if(context.started && touchingDirection.IsGrounded)
+	//     {
+	//         animator.SetTrigger("jump");
+	//         rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+	//     }
+	// }
 }
