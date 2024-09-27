@@ -15,6 +15,8 @@ public class Playercontroller : MonoBehaviour
 	public bool _isFacingRight = true;
 	private bool isFacingRight;
 	public float jumpImpulse = 10f;
+	public float fallMultiplier = 2.5f;
+	public float shortJumpMultiplier = 1.5f;
 
 	public bool GetIsFacingRight()
 	{
@@ -105,11 +107,11 @@ public class Playercontroller : MonoBehaviour
 
 		if (rb.velocity.y < 0)
 		{
-			rb.velocity += Vector2.up * (Physics2D.gravity.y * (2.5f - 1) * Time.deltaTime);
+			rb.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
 		}
 		else if (!Input.GetButton("Jump"))
 		{
-			rb.velocity += Vector2.up * (Physics2D.gravity.y * (1.5f - 1) * Time.deltaTime);
+			rb.velocity += Vector2.up * (Physics2D.gravity.y * (shortJumpMultiplier - 1) * Time.deltaTime);
 		}
 
 		if (Input.GetButtonDown("Attack_1"))
