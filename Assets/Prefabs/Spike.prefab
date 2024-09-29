@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
+  layer: 6
 --- !u!1 &4811854862516957768
 GameObject:
   m_ObjectHideFlags: 0

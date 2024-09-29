@@ -5,10 +5,11 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public int attackDamage = 10;
-    
+    public int layer = 10;
+
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if(collider2D.gameObject.layer == 6)
+        if(collider2D.gameObject.layer == layer)
         {
            Damageable dam = collider2D.gameObject.GetComponent<Damageable>();
            dam.Hit(attackDamage);

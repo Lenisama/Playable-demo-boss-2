@@ -17,6 +17,9 @@ public class Playercontroller : MonoBehaviour
 	public float jumpImpulse = 10f;
 	public float fallMultiplier = 2.5f;
 	public float shortJumpMultiplier = 1.5f;
+	public float attackCooldown = 0.1f;
+
+	private float lastAttack;
 
 	public bool GetIsFacingRight()
 	{
@@ -114,13 +117,13 @@ public class Playercontroller : MonoBehaviour
 			rb.velocity += Vector2.up * (Physics2D.gravity.y * (shortJumpMultiplier - 1) * Time.deltaTime);
 		}
 
-		if (Input.GetButtonDown("Attack_1"))
+		if (Input.GetButtonDown("Attack_1") && Time.time > lastAttack + attackCooldown)
 		{
 			animator.SetTrigger("attack");
+			lastAttack = Time.time;
 		}
 	}
 
-	private void FixUpdate() { }
 
 	private void SetFacingDirection()
 	{
@@ -133,13 +136,4 @@ public class Playercontroller : MonoBehaviour
 			SetIsFacingRight(false);
 		}
 	}
-	// public void OnJump(InputAction.CallbackContext context)
-	// {
-	//     //Check if alive
-	//     if(context.started && touchingDirection.IsGrounded)
-	//     {
-	//         animator.SetTrigger("jump");
-	//         rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-	//     }
-	// }
 }
