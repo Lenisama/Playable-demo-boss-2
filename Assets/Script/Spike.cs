@@ -5,6 +5,8 @@ using UnityEngine.Animations;
 
 public class Spike : MonoBehaviour
 {
+    public GameObject spike;
+    public Animator holeAnim;
     public float savedTime;
     public float speed = 50;
     public float distance = 2;
@@ -15,11 +17,12 @@ public class Spike : MonoBehaviour
     }
     public IEnumerator Rise()
     {
-        Vector3 start = transform.position;
+        Vector3 start = spike.transform.position;
         Vector3 end = start + new Vector3(0, distance, 0);
-        while (Vector3.Distance(transform.position, end) > 0.05f)
+        holeAnim.SetTrigger("Open");
+        while (Vector3.Distance(spike.transform.position, end) > 0.05f)
         {
-            transform.position = Vector3.Lerp(transform.position, end, speed * Time.deltaTime);
+            spike.transform.position = Vector3.Lerp(spike.transform.position, end, speed * Time.deltaTime);
             yield return null;
         }
 
@@ -28,11 +31,12 @@ public class Spike : MonoBehaviour
 
     public IEnumerator FallDown()
     {
-        Vector3 start = transform.position;
+        Vector3 start = spike.transform.position;
         Vector3 end = start - new Vector3(0, distance, 0);
-        while (Vector3.Distance(transform.position, end) > 0.05f)
+        holeAnim.SetTrigger("Close");
+        while (Vector3.Distance(spike.transform.position, end) > 0.05f)
         {
-            transform.position = Vector3.Lerp(transform.position, end, speed * Time.deltaTime);
+            spike.transform.position = Vector3.Lerp(spike.transform.position, end, speed * Time.deltaTime);
             yield return null;
         }
     }

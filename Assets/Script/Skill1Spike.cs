@@ -10,14 +10,9 @@ public class Skill1Spike : MonoBehaviour
     public List<Spike> spikesList = new List<Spike>();
     public float timeBetweenSpikes = 0.1f;
 
-    private void Start()
+    public void RaiseSpikes()
     {
-	    RaiseSpikes(timeBetweenSpikes);
-    }
-
-    public void RaiseSpikes(float timeBetween)
-    {
-	    StartCoroutine(RaiseSpikesRoutine(timeBetween));
+	    StartCoroutine(RaiseSpikesRoutine(timeBetweenSpikes));
     }
     
     IEnumerator RaiseSpikesRoutine(float timeBetween)
