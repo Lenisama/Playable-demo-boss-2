@@ -686,6 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill1Spike: {fileID: 1733961249}
+  animator: {fileID: 311356990}
   damageable: {fileID: 311356993}
   startCooldownTime: 3.5
 --- !u!1 &354392402

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Boss2Controller : MonoBehaviour
 {
     public Skill1Spike skill1Spike;
+    public Animator animator;
     public Damageable damageable;
     public float startCooldownTime = 1f;
     private float cooldownTime;
@@ -17,6 +18,11 @@ public class Boss2Controller : MonoBehaviour
     }
 
     private void CastSkill()
+    {
+        animator.SetTrigger("CastSkill1");
+    }
+
+    private void Skill1()
     {
         skill1Spike.RaiseSpikes();
     }
