@@ -20,6 +20,9 @@ public class Playercontroller : MonoBehaviour
 	public float attackCooldown = 0.1f;
 
 	private float lastAttack;
+	private bool isDashing;
+	public bool canDash;
+	private float dashTime;
 
 	public bool GetIsFacingRight()
 	{
@@ -77,6 +80,31 @@ public class Playercontroller : MonoBehaviour
 	void Update()
 	{
 		moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+		if (canDash && !isDashing && Input.GetKeyDown(KeyCode.LeftShift) && Mathf.Abs(moveInput.x) > 0)
+		{
+			isDashing = true;
+			canDash = false;
+		}
+
+		if (isDashing && dashTime < 0.05f)
+		{
+			rb.velocity = Vector2.right * Mathf.Sign(moveInput.x) * walkSpeed * 7.5f;
+			dashTime += Time.deltaTime;
+			return;
+		}
+		else
+		{
+			isDashing = false;
+			dashTime = 0f;
+		}
+
+		if (Input.GetButtonDown("Attack_1") && Time.time > lastAttack + attackCooldown)
+		{
+			animator.SetTrigger("attack");
+			lastAttack = Time.time;
+		}
+
 		if (CanMove)
 		{
 			if (touchingDirection.IsGrounded)
@@ -105,6 +133,7 @@ public class Playercontroller : MonoBehaviour
 			// rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
 
 			animator.SetTrigger("jump");
+			canDash = true;
 			rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
 		}
 
@@ -115,12 +144,6 @@ public class Playercontroller : MonoBehaviour
 		else if (!Input.GetButton("Jump"))
 		{
 			rb.velocity += Vector2.up * (Physics2D.gravity.y * (shortJumpMultiplier - 1) * Time.deltaTime);
-		}
-
-		if (Input.GetButtonDown("Attack_1") && Time.time > lastAttack + attackCooldown)
-		{
-			animator.SetTrigger("attack");
-			lastAttack = Time.time;
 		}
 	}
 

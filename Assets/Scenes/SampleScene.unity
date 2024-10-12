@@ -256,7 +256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -39.200012}
+  m_AnchoredPosition: {x: 50, y: -39.19995}
   m_SizeDelta: {x: 381.2058, y: 27.1958}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &114296807
@@ -1593,6 +1593,7 @@ MonoBehaviour:
   fallMultiplier: 3
   shortJumpMultiplier: 3.5
   attackCooldown: 0.15
+  canDash: 0
   _isMoving: 0
 --- !u!50 &1278492252
 Rigidbody2D:
@@ -1777,6 +1778,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   groundDistance: 0.05
+  playercontroller: {fileID: 1278492251}
   _isGrounded: 0
 --- !u!114 &1278492261
 MonoBehaviour:

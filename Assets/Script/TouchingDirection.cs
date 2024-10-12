@@ -6,6 +6,7 @@ public class TouchingDirection : MonoBehaviour
 {
     public ContactFilter2D castFilter;
     public float groundDistance = 0.05f;
+    public Playercontroller playercontroller;
     RaycastHit2D[] groundHits = new RaycastHit2D[5];
     [SerializeField]
     private bool _isGrounded;
@@ -21,6 +22,10 @@ public class TouchingDirection : MonoBehaviour
         }
         private set
         {
+            if (value && !_isGrounded)
+            {
+                playercontroller.canDash = true;
+            }
             _isGrounded = value;
             animator.SetBool("isGrounded", value);
         }
