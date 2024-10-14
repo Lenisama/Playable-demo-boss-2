@@ -740,6 +740,7 @@ MonoBehaviour:
   _maxHealth: 500
   _health: 500
   healthBarFill: {fileID: 530041514}
+  isInvincible: 0
   invinciblilityTime: 0
 --- !u!50 &311356994
 Rigidbody2D:
@@ -1610,6 +1611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ffb1ffabc1ef5418cc12043f7c2361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageable: {fileID: 1278492261}
   walkSpeed: 15
   airWalkSpeed: 10
   _isFacingRight: 0
@@ -1818,7 +1820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _health: 100
-  healthBarFill: {fileID: 0}
+  healthBarFill: {fileID: 114296809}
+  isInvincible: 0
   invinciblilityTime: 0.25
 --- !u!1001 &1521037601
 PrefabInstance:
