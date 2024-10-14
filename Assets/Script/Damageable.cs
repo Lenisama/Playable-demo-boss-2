@@ -36,7 +36,7 @@ public class Damageable : MonoBehaviour
 	public Image healthBarFill;
 
 	private bool _isAlive = true;
-	private bool isInvincible;
+	public bool isInvincible;
 	private float timeSinceHit = 1;
 	public float invinciblilityTime = 0.25f;
 

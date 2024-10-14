@@ -10,6 +10,7 @@ public class Playercontroller : MonoBehaviour
 {
 	Vector2 moveInput;
 	TouchingDirection touchingDirection;
+	public Damageable damageable;
 	public float walkSpeed = 5f;
 	public float airWalkSpeed = 10f;
 	public bool _isFacingRight = true;
@@ -91,6 +92,7 @@ public class Playercontroller : MonoBehaviour
 		{
 			rb.velocity = Vector2.right * Mathf.Sign(moveInput.x) * walkSpeed * 7.5f;
 			dashTime += Time.deltaTime;
+			damageable.isInvincible = true;
 			return;
 		}
 		else

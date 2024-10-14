@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Boss2Controller : MonoBehaviour
 {
     public Skill1Spike skill1Spike;
     public Animator animator;
     public Damageable damageable;
+    public GameObject[] skill2FireSpawnPoints;
+    public GameObject skill2FirePrefab;
     public float startCooldownTime = 1f;
     private float cooldownTime;
     private bool isCooldown;
@@ -19,7 +23,32 @@ public class Boss2Controller : MonoBehaviour
 
     private void CastSkill()
     {
+        int random = Random.Range(1, 4);
+        switch (random)
+        {
+            case 1:
+                CastSkill1();
+                break;
+            case 2:
+                CastSkill2();
+                break;
+            case 3:
+                CastSkill2();
+                break;
+        }
+    }
+
+    private void CastSkill1()
+    {
         animator.SetTrigger("CastSkill1");
+    }
+    private void CastSkill2()
+    {
+        animator.SetTrigger("CastSkill2");
+        for (int i = 0; i < skill2FireSpawnPoints.Length; i++)
+        {
+            Instantiate(skill2FirePrefab, skill2FireSpawnPoints[i].transform.position, quaternion.identity);
+        }
     }
 
     private void Skill1()
@@ -27,6 +56,17 @@ public class Boss2Controller : MonoBehaviour
         skill1Spike.RaiseSpikes();
     }
 
+    private void Skill2()
+    {
+        foreach (var fire in FindObjectsOfType<Fire>())
+        {
+            fire.MoveToPlayer();
+        }
+    }
+
+    private void Skill3()
+    {
+    }
     // Update is called once per frame
     void Update()
     {
