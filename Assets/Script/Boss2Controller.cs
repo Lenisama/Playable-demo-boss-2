@@ -33,7 +33,7 @@ public class Boss2Controller : MonoBehaviour
                 CastSkill2();
                 break;
             case 3:
-                CastSkill2();
+                CastSkill1();
                 break;
         }
     }
